@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- 1. English Main Page (Default) -->
+  <url>
+    <loc>https://k-link.co.kr/index.html</loc>
+    <priority>1.00</priority>
+    <xhtml:link 
+               rel="alternate"
+               hreflang="en"
+               href="https://k-link.co.kr/index.html"/>
+    <xhtml:link 
+               rel="alternate"
+               hreflang="ko"
+               href="https://k-link.co.kr/index_ko.html"/>
+    <xhtml:link 
+               rel="alternate"
+               hreflang="x-default"
+               href="https://k-link.co.kr/index.html"/>
+  </url>
+  
+  <!-- 2. Korean Main Page -->
+  <url>
+    <loc>https://k-link.co.kr/index_ko.html</loc>
+    <priority>0.90</priority>
+    <xhtml:link 
+               rel="alternate"
+               hreflang="en"
+               href="https://k-link.co.kr/index.html"/>
+    <xhtml:link 
+               rel="alternate"
+               hreflang="ko"
+               href="https://k-link.co.kr/index_ko.html"/>
+    <xhtml:link 
+               rel="alternate"
+               hreflang="x-default"
+               href="https://k-link.co.kr/index.html"/>
+  </url>
+  
+  <!-- 3. English Terms -->
+  <url>
+    <loc>https://k-link.co.kr/terms_of_service_en.html</loc>
+    <priority>0.10</priority>
+  </url>
+  
+  <!-- 4. English Privacy -->
+  <url>
+    <loc>https://k-link.co.kr/privacy_policy_en.html</loc>
+    <priority>0.10</priority>
+  </url>
+  
+  <!-- 5. Korean Terms -->
+  <url>
+    <loc>https://k-link.co.kr/terms_of_service_ko.html</loc>
+    <priority>0.10</priority>
+  </url>
+  
+  <!-- 6. Korean Privacy -->
+  <url>
+    <loc>https://k-link.co.kr/privacy_policy_ko.html</loc>
+    <priority>0.10</priority>
+  </url>
+  
+</urlset>

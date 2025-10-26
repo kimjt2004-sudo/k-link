@@ -1,9 +1,24 @@
 <!DOCTYPE html>
+<!-- 
+  [SEO Update]
+  - Added 'lang="en"' for English main page.
+  - Added meta description for search results.
+  - Added canonical URL.
+  - Added alternate hreflang tags for multilingual SEO.
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>K-Link: Your Gateway to Korean Shopping</title>
+    <title>K-Link: Your Gateway to Korean Shopping & Trends</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Your one-stop hub for all Korean links. Explore K-Pop, fashion, beauty, shopping, travel, and lifestyle sites popular in Korea.">
+    <link rel="canonical" href="https://k-link.co.kr/index.html" />
+    <link rel="alternate" hreflang="en" href="https://k-link.co.kr/index.html" />
+    <link rel="alternate" hreflang="ko" href="https://k-link.co.kr/index_ko.html" />
+    <link rel="alternate" hreflang="x-default" href="https://k-link.co.kr/index.html" />
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,26 +37,26 @@
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
-    <!-- Homepage Modal -->
+    <!-- Set Homepage Modal -->
     <div id="modal-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40"></div>
     <div id="homepage-modal" class="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full z-50">
         <h3 class="text-2xl font-bold text-gray-800 mb-4">Set as Homepage</h3>
-        <p class="text-gray-600 mb-6">Due to browser security policies, websites can no longer set your homepage automatically. Please set K-Link as your homepage manually through your browser's settings menu.</p>
+        <p class="text-gray-600 mb-6">Due to browser security restrictions, sites cannot set your homepage automatically. Please set K-Link as your homepage manually through your browser's settings menu.</p>
         <div class="text-center">
-            <button id="close-modal-btn" class="bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600 transition-colors">Got it</button>
+            <button id="close-modal-btn" class="bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600 transition-colors">OK</button>
         </div>
     </div>
 
     <div class="container mx-auto p-4 md:p-8 max-w-7xl">
-        <!-- Language Switcher & Homepage Button -->
+        <!-- Language Switcher & Set Homepage -->
         <div class="flex justify-end items-center gap-4 mb-4 text-sm">
-            <button id="set-homepage-btn" class="text-gray-600 hover:text-blue-500 transition-colors font-medium">Set as Homepage</button>
-            <span class="text-gray-300">|</span>
-            <!-- [수정됨] 'Korean' 링크가 index_ko.html을 가리키도록 수정 -->
+            <button id="set-homepage-btn" class_ko="text-gray-600 hover:text-blue-500 transition-colors font-medium">Set as Homepage</button>
+            <span class_ko="text-gray-300">|</span>
+            <!-- Link to Korean page (index_ko.html) -->
             <a href="index_ko.html" class="text-gray-600 hover:text-blue-500 transition-colors font-medium">Korean</a>
         </div>
 
-        <!-- Header, Time, Weather -->
+        <!-- Page Title, Time, Weather -->
         <header class="text-center mb-8">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-700 mb-2">K-Link</h1>
             <p class="text-lg text-gray-500 mb-3">Your Gateway to Korean Shopping & Trends</p>
@@ -79,9 +94,9 @@
 
         <!-- Link Grid -->
         <main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- K-POP Agencies -->
+            <!-- K-Pop Agencies -->
             <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-purple-600">🎵 K-POP Agencies</h2>
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-purple-600">🎵 K-Pop Agencies</h2>
                 <ul class="space-y-3">
                     <li><a href="https://www.hybecorp.com" target="_blank" class="flex items-center text-gray-700 hover:text-purple-500 hover:translate-x-1 transition-transform">HYBE (BTS, TXT)</a></li>
                     <li><a href="https://www.smentertainment.com" target="_blank" class="flex items-center text-gray-700 hover:text-purple-500 hover:translate-x-1 transition-transform">SM (NCT, aespa)</a></li>
@@ -93,20 +108,20 @@
             <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
                 <h2 class="text-xl font-bold mb-4 border-b pb-2 text-blue-600">🚀 Main Portals</h2>
                 <ul class="space-y-3">
-                     <li><a href="https://www.naver.com" target="_blank" class="flex items-center text-gray-700 hover:text-blue-500 hover:translate-x-1 transition-transform"><img src="https://ssl.pstatic.net/static/favicon.ico" class="w-4 h-4 mr-3" alt="Naver Logo">Naver</a></li>
-                    <li><a href="https://www.google.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-blue-500 hover:translate-x-1 transition-transform"><img src="https://www.google.com/favicon.ico" class="w-4 h-4 mr-3" alt="Google Logo">Google</a></li>
-                    <li><a href="https://www.daum.net" target="_blank" class="flex items-center text-gray-700 hover:text-blue-500 hover:translate-x-1 transition-transform"><img src="https://www.daum.net/favicon.ico" class="w-4 h-4 mr-3" alt="Daum Logo">Daum</a></li>
-                    <li><a href="https://www.youtube.com" target="_blank" class="flex items-center text-gray-700 hover:text-blue-500 hover:translate-x-1 transition-transform"><img src="https://www.youtube.com/favicon.ico" class="w-4 h-4 mr-3" alt="YouTube Logo">YouTube</a></li>
+                    <li><a href="https://www.naver.com" target="_blank" class="flex items-center text-gray-700 hover:text-blue-500 hover:translate-x-1 transition-transform"><img src="https://ssl.pstatic.net/static/favicon.ico" class="w-4 h-4 mr-3" alt="Naver logo">Naver</a></li>
+                    <li><a href="https://www.google.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-blue-500 hover:translate-x-1 transition-transform"><img src="https://www.google.com/favicon.ico" class="w-4 h-4 mr-3" alt="Google logo">Google Korea</a></li>
+                    <li><a href="https://www.daum.net" target="_blank" class="flex items-center text-gray-700 hover:text-blue-500 hover:translate-x-1 transition-transform"><img src="https://www.daum.net/favicon.ico" class="w-4 h-4 mr-3" alt="Daum logo">Daum</a></li>
+                    <li><a href="https://www.youtube.com" target="_blank" class="flex items-center text-gray-700 hover:text-blue-500 hover:translate-x-1 transition-transform"><img src="https://www.youtube.com/favicon.ico" class="w-4 h-4 mr-3" alt="YouTube logo">YouTube</a></li>
                 </ul>
             </div>
-             <!-- News -->
-             <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+            <!-- News -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
                 <h2 class="text-xl font-bold mb-4 border-b pb-2 text-green-600">📰 News</h2>
                 <ul class="space-y-3">
                     <li><a href="https://news.naver.com" target="_blank" class="flex items-center text-gray-700 hover:text-green-500 hover:translate-x-1 transition-transform">Naver News</a></li>
                     <li><a href="https://news.daum.net" target="_blank" class="flex items-center text-gray-700 hover:text-green-500 hover:translate-x-1 transition-transform">Daum News</a></li>
-                    <li><a href="https://www.chosun.com/" target="_blank" class="flex items-center text-gray-700 hover:text-green-500 hover:translate-x-1 transition-transform">Chosun Ilbo</a></li>
-                    <li><a href="https://www.joongang.co.kr/" target="_blank" class="flex items-center text-gray-700 hover:text-green-500 hover:translate-x-1 transition-transform">JoongAng Ilbo</a></li>
+                    <li><a href="https://www.koreatimes.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-green-500 hover:translate-x-1 transition-transform">Korea Times</a></li>
+                    <li><a href="https://www.koreaherald.com" target="_blank" class="flex items-center text-gray-700 hover:text-green-500 hover:translate-x-1 transition-transform">Korea Herald</a></li>
                 </ul>
             </div>
             <!-- Online Shopping -->
@@ -114,8 +129,8 @@
                 <h2 class="text-xl font-bold mb-4 border-b pb-2 text-amber-600">🛍️ Online Shopping</h2>
                 <ul class="space-y-3">
                     <li><a href="https://www.coupang.com" target="_blank" class="flex items-center text-gray-700 hover:text-amber-500 hover:translate-x-1 transition-transform">Coupang</a></li>
-                    <li><a href="https://www.gmarket.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-amber-500 hover:translate-x-1 transition-transform">Gmarket</a></li>
-                    <li><a href="https://www.11st.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-amber-500 hover:translate-x-1 transition-transform">11Street</a></li>
+                    <li><a href="http://global.gmarket.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-amber-500 hover:translate-x-1 transition-transform">Gmarket Global</a></li>
+                    <li><a href="https://www.11st.co.kr/global/en" target="_blank" class="flex items-center text-gray-700 hover:text-amber-500 hover:translate-x-1 transition-transform">11st (Global)</a></li>
                     <li><a href="https://www.auction.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-amber-500 hover:translate-x-1 transition-transform">Auction</a></li>
                     <li><a href="https://www.ssg.com" target="_blank" class="flex items-center text-gray-700 hover:text-amber-500 hover:translate-x-1 transition-transform">SSG.COM</a></li>
                 </ul>
@@ -126,7 +141,7 @@
                 <ul class="space-y-3">
                     <li><a href="https://www.cjonstyle.com" target="_blank" class="flex items-center text-gray-700 hover:text-orange-500 hover:translate-x-1 transition-transform">CJ ONSTYLE</a></li>
                     <li><a href="https://www.gsshop.com" target="_blank" class="flex items-center text-gray-700 hover:text-orange-500 hover:translate-x-1 transition-transform">GS SHOP</a></li>
-                    <li><a href="https://www.lotteimall.com" target="_blank" class="flex items-center text-gray-700 hover:text-orange-500 hover:translate-x-1 transition-transform">Lotte Homeshopping</a></li>
+                    <li><a href="https://www.lotteimall.com" target="_blank" class="flex items-center text-gray-700 hover:text-orange-500 hover:translate-x-1 transition-transform">Lotte</a></li>
                     <li><a href="https://www.hyundaihmall.com" target="_blank" class="flex items-center text-gray-700 hover:text-orange-500 hover:translate-x-1 transition-transform">Hyundai Hmall</a></li>
                 </ul>
             </div>
@@ -137,29 +152,27 @@
                     <li><a href="https://www.kyobobook.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-indigo-500 hover:translate-x-1 transition-transform">Kyobo Book</a></li>
                     <li><a href="https://www.yes24.com" target="_blank" class="flex items-center text-gray-700 hover:text-indigo-500 hover:translate-x-1 transition-transform">YES24</a></li>
                     <li><a href="https://www.aladin.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-indigo-500 hover:translate-x-1 transition-transform">Aladin</a></li>
-                    <li><a href="https://www.ridibooks.com" target="_blank" class="flex items-center text-gray-700 hover:text-indigo-500 hover:translate-x-1 transition-transform">RIDI Books</a></li>
-                    <li><a href="https://www.millie.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-indigo-500 hover:translate-x-1 transition-transform">Millie's Library</a></li>
+                    <li><a href="https://www.ridibooks.com" target="_blank" class="flex items-center text-gray-700 hover:text-indigo-500 hover:translate-x-1 transition-transform">Ridi Books</a></li>
                 </ul>
             </div>
             <!-- Finance -->
             <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-teal-600">🏦 Finance</h2>
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-gray-600">🏦 Finance</h2>
                 <ul class="space-y-3">
-                    <li><a href="https://www.kbstar.com" target="_blank" class="flex items-center text-gray-700 hover:text-teal-500 hover:translate-x-1 transition-transform">KB Kookmin Bank</a></li>
-                    <li><a href="https://www.shinhan.com" target="_blank" class="flex items-center text-gray-700 hover:text-teal-500 hover:translate-x-1 transition-transform">Shinhan Bank</a></li>
-                    <li><a href="https://www.wooribank.com" target="_blank" class="flex items-center text-gray-700 hover:text-teal-500 hover:translate-x-1 transition-transform">Woori Bank</a></li>
-                    <li><a href="https://www.hanabank.com" target="_blank" class="flex items-center text-gray-700 hover:text-teal-500 hover:translate-x-1 transition-transform">Hana Bank</a></li>
-                    <li><a href="https://www.kakaobank.com" target="_blank" class="flex items-center text-gray-700 hover:text-teal-500 hover:translate-x-1 transition-transform">KakaoBank</a></li>
+                    <li><a href="https://www.kbstar.com" target="_blank" class="flex items-center text-gray-700 hover:text-gray-500 hover:translate-x-1 transition-transform">KB Kookmin Bank</a></li>
+                    <li><a href="https://www.shinhan.com" target="_blank" class="flex items-center text-gray-700 hover:text-gray-500 hover:translate-x-1 transition-transform">Shinhan Bank</a></li>
+                    <li><a href="https://www.wooribank.com" target="_blank" class="flex items-center text-gray-700 hover:text-gray-500 hover:translate-x-1 transition-transform">Woori Bank</a></li>
+                    <li><a href="https://www.hanabank.com" target="_blank" class="flex items-center text-gray-700 hover:text-gray-500 hover:translate-x-1 transition-transform">Hana Bank</a></li>
                 </ul>
             </div>
-            <!-- Living & Interior -->
+            <!-- Lifestyle & Interior -->
             <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-stone-600">🛋️ Living & Interior</h2>
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-stone-600">🛋️ Lifestyle & Interior</h2>
                 <ul class="space-y-3">
                     <li><a href="https://ohou.se" target="_blank" class="flex items-center text-gray-700 hover:text-stone-500 hover:translate-x-1 transition-transform">Ohouse</a></li>
-                    <li><a href="https://www.ikea.com/kr/ko/" target="_blank" class="flex items-center text-gray-700 hover:text-stone-500 hover:translate-x-1 transition-transform">IKEA Korea</a></li>
+                    <li><a href="https://www.ikea.com/kr/en/" target="_blank" class="flex items-center text-gray-700 hover:text-stone-500 hover:translate-x-1 transition-transform">IKEA Korea</a></li>
                     <li><a href="https://www.hanssem.com" target="_blank" class="flex items-center text-gray-700 hover:text-stone-500 hover:translate-x-1 transition-transform">Hanssem</a></li>
-                    <li><a href="https://www.livartmall.com" target="_blank" class="flex items-center text-gray-700 hover:text-stone-500 hover:translate-x-1 transition-transform">LIVART Mall</a></li>
+                    <li><a href="https://www.daisomall.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-stone-500 hover:translate-x-1 transition-transform">Daiso Mall</a></li>
                 </ul>
             </div>
             <!-- Travel & Tickets -->
@@ -168,39 +181,40 @@
                 <ul class="space-y-3">
                     <li><a href="https://www.yanolja.com" target="_blank" class="flex items-center text-gray-700 hover:text-violet-500 hover:translate-x-1 transition-transform">Yanolja</a></li>
                     <li><a href="https://www.goodchoice.kr" target="_blank" class="flex items-center text-gray-700 hover:text-violet-500 hover:translate-x-1 transition-transform">Yeogi Eottae</a></li>
-                    <li><a href="https://ticket.interpark.com" target="_blank" class="flex items-center text-gray-700 hover:text-violet-500 hover:translate-x-1 transition-transform">Interpark Ticket</a></li>
                     <li><a href="https://www.agoda.com" target="_blank" class="flex items-center text-gray-700 hover:text-violet-500 hover:translate-x-1 transition-transform">Agoda</a></li>
+                    <li><a href="https://www.klook.com/en-KR/" target="_blank" class="flex items-center text-gray-700 hover:text-violet-500 hover:translate-x-1 transition-transform">Klook</a></li>
+                    <li><a href="https://ticket.interpark.com/Global" target="_blank" class="flex items-center text-gray-700 hover:text-violet-500 hover:translate-x-1 transition-transform">Interpark Ticket</a></li>
                 </ul>
             </div>
             <!-- Beauty -->
             <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
                 <h2 class="text-xl font-bold mb-4 border-b pb-2 text-pink-600">💄 Beauty</h2>
                 <ul class="space-y-3">
-                    <li><a href="https://www.oliveyoung.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-pink-500 hover:translate-x-1 transition-transform">Olive Young</a></li>
+                    <li><a href="https://global.oliveyoung.com" target="_blank" class="flex items-center text-gray-700 hover:text-pink-500 hover:translate-x-1 transition-transform">Olive Young (Global)</a></li>
                     <li><a href="https://www.chicor.com" target="_blank" class="flex items-center text-gray-700 hover:text-pink-500 hover:translate-x-1 transition-transform">Chicor</a></li>
                     <li><a href="https://www.aritaum.com" target="_blank" class="flex items-center text-gray-700 hover:text-pink-500 hover:translate-x-1 transition-transform">Aritaum</a></li>
-                    <li><a href="https://www.amoremall.com" target="_blank" class="flex items-center text-gray-700 hover:text-pink-500 hover:translate-x-1 transition-transform">Amore Mall</a></li>
+                    <li><a href="https://www.sephora.kr/" target="_blank" class="flex items-center text-gray-700 hover:text-pink-500 hover:translate-x-1 transition-transform">Sephora Korea</a></li>
                 </ul>
             </div>
             <!-- Fashion -->
             <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
                 <h2 class="text-xl font-bold mb-4 border-b pb-2 text-cyan-600">👗 Fashion</h2>
                 <ul class="space-y-3">
-                    <li><a href="https://www.musinsa.com" target="_blank" class="flex items-center text-gray-700 hover:text-cyan-500 hover:translate-x-1 transition-transform">Musinsa</a></li>
-                    <li><a href="https://www.wconcept.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-cyan-500 hover:translate-x-1 transition-transform">W Concept</a></li>
+                    <li><a href="https://global.musinsa.com" target="_blank" class="flex items-center text-gray-700 hover:text-cyan-500 hover:translate-x-1 transition-transform">Musinsa (Global)</a></li>
+                    <li><a href="https://us.wconcept.com" target="_blank" class="flex items-center text-gray-700 hover:text-cyan-500 hover:translate-x-1 transition-transform">W Concept (US)</a></li>
                     <li><a href="https://www.29cm.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-cyan-500 hover:translate-x-1 transition-transform">29CM</a></li>
                     <li><a href="https://kream.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-cyan-500 hover:translate-x-1 transition-transform">KREAM</a></li>
-                    <li><a href="https://www.ssfshop.com" target="_blank" class="flex items-center text-gray-700 hover:text-cyan-500 hover:translate-x-1 transition-transform">SSF Shop</a></li>
+                    <li><a href="https://www.ssfshop.com/main" target="_blank" class="flex items-center text-gray-700 hover:text-cyan-500 hover:translate-x-1 transition-transform">SSF Shop</a></li>
                 </ul>
             </div>
             <!-- Digital -->
             <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
                 <h2 class="text-xl font-bold mb-4 border-b pb-2 text-slate-600">💻 Digital</h2>
                 <ul class="space-y-3">
-                    <li><a href="https://www.samsung.com/sec/" target="_blank" class="flex items-center text-gray-700 hover:text-slate-500 hover:translate-x-1 transition-transform">Samsung</a></li>
-                    <li><a href="https://www.lge.co.kr/" target="_blank" class="flex items-center text-gray-700 hover:text-slate-500 hover:translate-x-1 transition-transform">LG</a></li>
-                    <li><a href="https://www.e-himart.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-slate-500 hover:translate-x-1 transition-transform">Himart</a></li>
-                    <li><a href="https://www.compuzone.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-slate-500 hover:translate-x-1 transition-transform">Compuzone</a></li>
+                    <li><a href="https://www.samsung.com/sec/" target="_blank" class="flex items-center text-gray-700 hover:text-slate-500 hover:translate-x-1 transition-transform">Samsung (Korea)</a></li>
+                    <li><a href="https://www.lge.co.kr/" target="_blank" class="flex items-center text-gray-700 hover:text-slate-500 hover:translate-x-1 transition-transform">LG (Korea)</a></li>
+                    <li><a href="https://www.e-himart.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-slate-500 hover:translate-x-1 transition-transform">Hi-Mart</a></li>
+                    <li><a href="https://www.danawa.com" target="_blank" class="flex items-center text-gray-700 hover:text-slate-500 hover:translate-x-1 transition-transform">Danawa</a></li>
                 </ul>
             </div>
             <!-- Food -->
@@ -210,146 +224,197 @@
                     <li><a href="https://www.kurly.com" target="_blank" class="flex items-center text-gray-700 hover:text-emerald-500 hover:translate-x-1 transition-transform">Market Kurly</a></li>
                     <li><a href="http://www.ssg.com/food/main.ssg" target="_blank" class="flex items-center text-gray-700 hover:text-emerald-500 hover:translate-x-1 transition-transform">SSG Food</a></li>
                     <li><a href="https://www.oasis.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-emerald-500 hover:translate-x-1 transition-transform">Oasis Market</a></li>
-                    <li><a href="https://www.coupang.com/np/categories/497135" target="_blank" class="flex items-center text-gray-700 hover:text-emerald-500 hover:translate-x-1 transition-transform">Rocket Fresh</a></li>
+                    <li><a href="https://www.baemin.com" target="_blank" class="flex items-center text-gray-700 hover:text-emerald-500 hover:translate-x-1 transition-transform">Baemin</a></li>
                 </ul>
             </div>
             <!-- Health -->
             <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-red-600">💊 Health</h2>
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-lime-600">💊 Health</h2>
                 <ul class="space-y-3">
-                    <li><a href="https://www.iherb.com/kr-ko" target="_blank" class="flex items-center text-gray-700 hover:text-red-500 hover:translate-x-1 transition-transform">iHerb</a></li>
-                    <li><a href="https://www.kgc.co.kr/" target="_blank" class="flex items-center text-gray-700 hover:text-red-500 hover:translate-x-1 transition-transform">CheongKwanJang</a></li>
-                    <li><a href="https://www.gnc.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-red-500 hover:translate-x-1 transition-transform">GNC Korea</a></li>
-                    <li><a href="https://www.nutrione.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-red-500 hover:translate-x-1 transition-transform">Nutrione</a></li>
+                    <li><a href="httpsS://www.iherb.com" target="_blank" class="flex items-center text-gray-700 hover:text-lime-500 hover:translate-x-1 transition-transform">iHerb</a></li>
+                    <li><a href="https://www.kgc.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-lime-500 hover:translate-x-1 transition-transform">CheongKwanJang</a></li>
+                    <li><a href="https://www.gnc.com" target="_blank" class="flex items-center text-gray-700 hover:text-lime-500 hover:translate-x-1 transition-transform">GNC Korea</a></li>
                 </ul>
             </div>
-            <!-- Baby & Kids -->
+            <!-- Kids -->
             <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-yellow-600">🧸 Baby & Kids</h2>
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-red-500">👶 Kids</h2>
                 <ul class="space-y-3">
-                    <li><a href="https://www.borimall.com" target="_blank" class="flex items-center text-gray-700 hover:text-yellow-500 hover:translate-x-1 transition-transform">Borimall</a></li>
-                    <li><a href="https://www.0to7.com" target="_blank" class="flex items-center text-gray-700 hover:text-yellow-500 hover:translate-x-1 transition-transform">0 to 7</a></li>
-                    <li><a href="https://www.akmall.com/c/main/P08" target="_blank" class="flex items-center text-gray-700 hover:text-yellow-500 hover:translate-x-1 transition-transform">AK Mall (Kids)</a></li>
+                    <li><a href="https://www.borimall.com" target="_blank" class="flex items-center text-gray-700 hover:text-red-500 hover:translate-x-1 transition-transform">Bori Mall</a></li>
+                    <li><a href="https://www.0to7.com" target="_blank" class="flex items-center text-gray-700 hover:text-red-500 hover:translate-x-1 transition-transform">0 to 7</a></li>
+                    <li><a href="https://www.ssg.com/baby" target="_blank" class="flex items-center text-gray-700 hover:text-red-500 hover:translate-x-1 transition-transform">SSG Baby</a></li>
                 </ul>
             </div>
-             <!-- Education -->
+            <!-- Education -->
             <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-rose-600">🎓 Education</h2>
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-sky-600">🎓 Education</h2>
                 <ul class="space-y-3">
-                    <li><a href="https://www.megastudy.net" target="_blank" class="flex items-center text-gray-700 hover:text-rose-500 hover:translate-x-1 transition-transform">Megastudy</a></li>
-                    <li><a href="https://www.etoos.com" target="_blank" class="flex items-center text-gray-700 hover:text-rose-500 hover:translate-x-1 transition-transform">Etoos</a></li>
-                    <li><a href="https://www.ebsi.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-rose-500 hover:translate-x-1 transition-transform">EBSi</a></li>
-                    <li><a href="https://www.hackers.com" target="_blank" class="flex items-center text-gray-700 hover:text-rose-500 hover:translate-x-1 transition-transform">Hackers</a></li>
+                    <li><a href="https://www.megastudy.net" target="_blank" class="flex items-center text-gray-700 hover:text-sky-500 hover:translate-x-1 transition-transform">Megastudy</a></li>
+                    <li><a href="https://www.ebsi.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-sky-500 hover:translate-x-1 transition-transform">EBSi</a></li>
+                    <li><a href="https://www.class101.net" target="_blank" class="flex items-center text-gray-700 hover:text-sky-500 hover:translate-x-1 transition-transform">Class101</a></li>
+                    <li><a href="https://www.wanted.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-sky-500 hover:translate-x-1 transition-transform">Wanted</a></li>
                 </ul>
             </div>
         </main>
     </div>
 
+    <footer class="mt-12 py-8 text-center border-t border-gray-200">
+        <p class="text-gray-500 text-sm">© 2025 K-Link. All rights reserved.</p>
+        <p class="text-gray-400 text-xs mt-2">Email: airmanjun@naver.com</p>
+        <p class="text-gray-400 text-xs mt-2 italic">Disclosure: This site contains affiliate links. We may earn a commission from qualifying purchases.</p>
+        <div class="mt-4 space-x-4">
+            <!-- Links to legal pages -->
+            <a href="terms_of_service_en.html" class="text-gray-500 hover:text-gray-700 text-sm">Terms of Service</a>
+            <a href="privacy_policy_en.html" class="text-gray-500 hover:text-gray-700 text-sm">Privacy Policy</a>
+        </div>
+    </footer>
+
     <script>
-        // Current Time
+        // Update current time
         function updateTime() {
             const timeElement = document.getElementById('current-time');
             if (timeElement) {
                 const now = new Date();
-                const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Seoul' };
-                timeElement.textContent = now.toLocaleString('en-US', options);
+                const options = {
+                    year: 'numeric', month: 'long', day: 'numeric', weekday: 'long',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+                    timeZone: 'Asia/Seoul'
+                };
+                timeElement.textContent = `Seoul: ${now.toLocaleString('en-US', options)}`;
             }
         }
         setInterval(updateTime, 1000);
         updateTime();
 
-        // Weather
+        // Fetch weather data
         async function fetchWeather() {
             const weatherWidget = document.getElementById('weather-widget');
             if (!weatherWidget) return;
             const city = 'Seoul';
-            const url = `https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true&timezone=Asia%2FSeoul`;
+            // Using wttr.in for simple JSON weather data
+            const url = `https://wttr.in/${city}?format=j1`;
+
             try {
                 const response = await fetch(url);
-                if (!response.ok) throw new Error('Failed to fetch weather');
+                if (!response.ok) throw new Error('Failed to fetch');
                 const data = await response.json();
-                const current = data.current_weather;
-                const temp = current.temperature;
-                const weatherCode = current.weathercode;
                 
+                const condition = data.current_condition[0];
+                const temp = condition.temp_C;
+                const weatherDesc = condition.weatherDesc[0].value;
+                const feelsLike = condition.FeelsLikeC;
+
                 let weatherIcon = '❓';
-                if (weatherCode == 0) weatherIcon = '☀️'; // Clear sky
-                else if (weatherCode == 1 || weatherCode == 2 || weatherCode == 3) weatherIcon = '☁️'; // Mainly clear, partly cloudy, overcast
-                else if (weatherCode >= 51 && weatherCode <= 67 || weatherCode >= 80 && weatherCode <= 82) weatherIcon = '🌧️'; // Rain
-                else if (weatherCode >= 71 && weatherCode <= 77 || weatherCode >= 85 && weatherCode <= 86) weatherIcon = '❄️'; // Snow
-                else if (weatherCode >= 95) weatherIcon = '⛈️'; // Thunderstorm
-                else if (weatherCode >= 45 && weatherCode <= 48) weatherIcon = '🌫️'; // Fog
+                const weatherCode = condition.weatherCode;
+                if ([113].includes(parseInt(weatherCode))) weatherIcon = '☀️'; // Clear/Sunny
+                else if ([116, 119, 122].includes(parseInt(weatherCode))) weatherIcon = '☁️'; // Partly cloudy, Cloudy, Overcast
+                else if ([176, 293, 296, 299, 302, 305, 308, 353, 356, 359].includes(parseInt(weatherCode))) weatherIcon = '🌧️'; // Rain
+                else if ([179, 182, 185, 323, 326, 329, 332, 335, 338, 368, 371].includes(parseInt(weatherCode))) weatherIcon = '❄️'; // Snow
+                else if ([248, 260].includes(parseInt(weatherCode))) weatherIcon = '🌫️'; // Fog
+                else if ([200].includes(parseInt(weatherCode))) weatherIcon = '⛈️'; // Thundery
 
                 weatherWidget.innerHTML = `
                     <span class="text-lg">${weatherIcon}</span>
                     <span class="font-semibold">Seoul</span>
                     <span>${temp}°C</span>
+                    <span class="text-gray-400 text-sm">(Feels ${feelsLike}°C)</span>
+                    <span class="text-gray-400 text-sm hidden sm:inline">- ${weatherDesc}</span>
                 `;
             } catch (error) {
-                console.error("Error loading weather:", error);
-                weatherWidget.innerHTML = `<span class="text-sm text-red-500">Weather unavailable</span>`;
+                console.error("Weather loading error:", error);
+                weatherWidget.innerHTML = `<span class="text-sm text-red-500">Failed to load weather.</span>`;
             }
         }
 
-        // Search
+        // Handle search
         const searchForm = document.getElementById('search-form');
         const searchInput = document.getElementById('search-input');
-        searchForm.addEventListener('submit', (e) => {
+        searchForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const query = searchInput.value.trim();
             if (query) {
-                const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-                window.open(googleUrl, '_blank');
-                searchInput.value = '';
+                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                // Open in a new tab (standard behavior)
+                window.open(googleSearchUrl, '_blank');
             }
         });
 
         // K-Link's Pick Carousel
-        const recommendations = [
-            { name: "Coupang", desc: "Rocket-speed delivery shopping", url: "https://www.coupang.com", logo: "https://placehold.co/100x40/ffffff/F44336?text=Coupang" },
-            { name: "Ohouse", desc: "No.1 Interior & lifestyle app", url: "https://ohou.se", logo: "https://placehold.co/100x40/ffffff/35C5F0?text=Ohouse" },
-            { name: "Market Kurly", desc: "Gourmet food, dawn delivery", url: "https://www.kurly.com/", logo: "https://placehold.co/100x40/ffffff/5F0080?text=Kurly" },
-            { name: "Musinsa", desc: "Korea's leading fashion store", url: "https://www.musinsa.com", logo: "https://placehold.co/100x40/ffffff/333333?text=Musinsa" },
-            { name: "Yanolja", desc: "All about travel, all at once", url: "https://www.yanolja.com", logo: "https://placehold.co/100x40/ffffff/D81B60?text=Yanolja" }
+        const carouselItems = [
+            {
+                logo: 'https://placehold.co/100x40/ffffff/333333?text=W+Concept',
+                alt: 'W Concept Logo',
+                title: 'W Concept',
+                desc: 'Curated collection of independent designers.',
+                link: 'https://us.wconcept.com'
+            },
+            {
+                logo: 'https://placehold.co/100x40/ffffff/333333?text=Ohouse',
+                alt: 'Ohouse Logo',
+                title: 'Ohouse',
+                desc: 'No.1 Interior & Lifestyle Platform.',
+                link: 'https://ohou.se'
+            },
+            {
+                logo: 'https://placehold.co/100x40/ffffff/333333?text=Market+Kurly',
+                alt: 'Market Kurly Logo',
+                title: 'Market Kurly',
+                desc: 'Premium food, delivered overnight.',
+                link: 'https://www.kurly.com'
+            },
+            {
+                logo: 'https://placehold.co/100x40/ffffff/333333?text=Musinsa',
+                alt: 'Musinsa Logo',
+                title: 'Musinsa',
+                desc: 'Korea\'s leading online fashion store.',
+                link: 'https://global.musinsa.com'
+            },
+            {
+                logo: 'https://placehold.co/100x40/ffffff/333333?text=Yanolja',
+                alt: 'Yanolja Logo',
+                title: 'Yanolja',
+                desc: 'All about travel, all at once.',
+                link: 'https://www.yanolja.com'
+            }
         ];
 
         const carouselContainer = document.getElementById('carousel-container');
-        recommendations.forEach(item => {
+        carouselItems.forEach(item => {
             carouselContainer.innerHTML += `
                 <div class="carousel-item px-4">
-                    <div class="bg-white/20 p-6 rounded-xl backdrop-blur-sm text-center h-full flex flex-col justify-between">
-                        <div>
-                            <img src="${item.logo}" alt="${item.name} Logo" class="mx-auto mb-3 h-10 rounded" onerror="this.onerror=null; this.src='https://placehold.co/100x40/ffffff/333333?text=${item.name}';">
-                            <h3 class="text-xl font-semibold">${item.name}</h3>
-                            <p class="text-sm mt-1 mb-4 opacity-90">${item.desc}</p>
-                        </div>
-                        <a href="${item.url}" target="_blank" class="bg-white text-indigo-600 font-bold py-2 px-6 rounded-full inline-block hover:bg-gray-200 transition-colors">Visit Site</a>
+                    <div class="bg-white/20 p-6 rounded-xl backdrop-blur-sm text-center h-full">
+                        <img src="${item.logo}" alt="${item.alt}" class="mx-auto mb-3 h-10 rounded" onerror="this.src='https://placehold.co/100x40';">
+                        <h3 class="text-xl font-semibold">${item.title}</h3>
+                        <p class="text-sm mt-1 mb-4 opacity-90">${item.desc}</p>
+                        <a href="${item.link}" target="_blank" class="bg-white text-indigo-600 font-bold py-2 px-6 rounded-full inline-block hover:bg-gray-200 transition-colors">Visit</a>
                     </div>
                 </div>
             `;
         });
 
         let currentIndex = 0;
-        const totalItems = recommendations.length;
+        const totalItems = carouselItems.length;
         const itemsToShow = () => window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
-        const maxIndex = () => totalItems - itemsToShow();
-
+        
         function updateCarousel() {
-            if (currentIndex > maxIndex()) {
-                currentIndex = maxIndex();
+            const items = itemsToShow();
+            const maxIndex = totalItems - items;
+            if (currentIndex > maxIndex) {
+                currentIndex = maxIndex;
             }
             if (currentIndex < 0) {
                 currentIndex = 0;
             }
-            const offset = -currentIndex * (100 / itemsToShow());
+            const offset = -currentIndex * (100 / items);
             carouselContainer.style.transform = `translateX(${offset}%)`;
             
             document.getElementById('prev-btn').disabled = currentIndex === 0;
-            document.getElementById('next-btn').disabled = currentIndex === maxIndex();
+            document.getElementById('next-btn').disabled = currentIndex === maxIndex;
         }
 
         document.getElementById('next-btn').addEventListener('click', () => {
-            if (currentIndex < maxIndex()) {
+            const items = itemsToShow();
+            if (currentIndex < totalItems - items) {
                 currentIndex++;
                 updateCarousel();
             }
@@ -361,26 +426,28 @@
                 updateCarousel();
             }
         });
-        
-        // Homepage Modal
+
+        // Set Homepage Modal Logic
+        const setHomepageBtn = document.getElementById('set-homepage-btn');
         const modalOverlay = document.getElementById('modal-overlay');
         const homepageModal = document.getElementById('homepage-modal');
-        const setHomepageBtn = document.getElementById('set-homepage-btn');
         const closeModalBtn = document.getElementById('close-modal-btn');
 
-        function openModal() {
+        function showModal() {
             modalOverlay.classList.remove('hidden');
             homepageModal.classList.remove('hidden');
         }
-        function closeModal() {
+
+        function hideModal() {
             modalOverlay.classList.add('hidden');
             homepageModal.classList.add('hidden');
         }
 
-        setHomepageBtn.addEventListener('click', openModal);
-        closeModalBtn.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', closeModal);
-
+        setHomepageBtn.addEventListener('click', showModal);
+        closeModalBtn.addEventListener('click', hideModal);
+        modalOverlay.addEventListener('click', hideModal);
+        
+        // Initial load
         window.addEventListener('resize', updateCarousel);
         document.addEventListener('DOMContentLoaded', () => {
             updateCarousel();
@@ -388,16 +455,6 @@
         });
 
     </script>
-    <footer class="mt-12 py-8 text-center border-t border-gray-200">
-        <p class="text-gray-500 text-sm">
-            © 2025 K-Link. All rights reserved.<br>
-            This site contains affiliate links, and we may earn a commission from purchases made through these links.<br>
-            <!-- [수정됨] 약관 링크가 올바른 영문 파일을 가리키도록 수정 -->
-            <a href="terms_of_service_en.html" class="text-blue-500 hover:underline">Terms of Service</a> | 
-            <a href="privacy_policy_en.html" class="text-blue-500 hover:underline">Privacy Policy</a> | 
-            <a href="mailto:airmanjun@naver.com" class="text-blue-500 hover:underline">Contact</a>
-        </p>
-    </footer>
 </body>
 </html>
 
