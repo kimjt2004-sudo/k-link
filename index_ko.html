@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Link: 한국 쇼핑 & 트렌드 허브</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', 'Roboto', sans-serif; background-color: #f0f2f5; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        .search-icon { filter: invert(40%) sepia(8%) saturate(301%) hue-rotate(176deg) brightness(95%) contrast(86%); }
+        .carousel-container { transition: transform 0.5s ease-in-out; }
+        .carousel-item { flex: 0 0 100%; }
+        @media (min-width: 768px) { .carousel-item { flex: 0 0 50%; } }
+        @media (min-width: 1024px) { .carousel-item { flex: 0 0 33.3333%; } }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <!-- 시작페이지 설정 모달 -->
+    <div id="modal-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+    <div id="homepage-modal" class="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full z-50">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">시작페이지로 설정</h3>
+        <p class="text-gray-600 mb-6">보안상의 이유로 브라우저에서는 더 이상 웹사이트가 자동으로 시작페이지를 설정하는 것을 허용하지 않습니다. 사용하시는 브라우저의 설정 메뉴를 통해 K-Link를 수동으로 시작페이지로 설정해 주세요.</p>
+        <div class="text-center">
+            <button id="close-modal-btn" class="bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600 transition-colors">확인</button>
+        </div>
+    </div>
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        <!-- 언어 변경 & 시작페이지 설정 -->
+        <div class="flex justify-end items-center gap-4 mb-4 text-sm">
+            <button id="set-homepage-btn" class="text-gray-600 hover:text-blue-500 transition-colors font-medium">시작페이지 설정</button>
+            <span class="text-gray-300">|</span>
+            <a href="index_en.html" class="text-gray-600 hover:text-blue-500 transition-colors font-medium">English</a>
+        </div>
+
+        <!-- 페이지 제목, 시간, 날씨 -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-700 mb-2">K-Link</h1>
+            <p class="text-lg text-gray-500 mb-3">당신을 위한 한국 쇼핑 & 트렌드 허브</p>
+            <p id="current-time" class="text-md text-gray-400"></p>
+            <div id="weather-widget" class="flex items-center justify-center gap-2 text-gray-500 mt-3">
+                <span class="text-sm">날씨 정보 로딩 중...</span>
+            </div>
+        </header>
+
+        <!-- 검색창 -->
+        <div class="mb-10 max-w-3xl mx-auto">
+            <form id="search-form" class="relative">
+                <input type="text" id="search-input" placeholder="사이트, 상품 등을 검색해 보세요..." class="w-full py-4 px-6 pr-12 text-lg border-2 border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300">
+                <button type="submit" class="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full hover:bg-gray-200 transition">
+                    <img src="https://www.gstatic.com/images/icons/material/system/2x/search_black_24dp.png" alt="검색" class="w-6 h-6 search-icon">
+                </button>
+            </form>
+        </div>
+
+        <!-- K-Link 추천 섹션 -->
+        <section class="mb-12 max-w-5xl mx-auto">
+            <div class="bg-gradient-to-r from-violet-500 to-indigo-600 p-8 rounded-2xl shadow-lg text-white">
+                <h2 class="text-2xl font-bold mb-6 text-center">✨ K-Link 추천</h2>
+                <div class="relative">
+                    <div class="overflow-hidden">
+                        <div id="carousel-container" class="flex -mx-4">
+                            <!-- 아이템 목록은 스크립트에서 동적으로 생성됩니다 -->
+                        </div>
+                    </div>
+                    <button id="prev-btn" class="absolute top-1/2 left-0 -translate-y-1/2 bg-white/30 p-2 rounded-full hover:bg-white/50 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></button>
+                    <button id="next-btn" class="absolute top-1/2 right-0 -translate-y-1/2 bg-white/30 p-2 rounded-full hover:bg-white/50 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 링크 그리드 -->
+        <main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- K-POP 소속사 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-purple-600">🎵 K-POP 소속사</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://www.hybecorp.com" target="_blank" class="flex items-center text-gray-700 hover:text-purple-500 hover:translate-x-1 transition-transform">하이브 (BTS, TXT)</a></li>
+                    <li><a href="https://www.smentertainment.com" target="_blank" class="flex items-center text-gray-700 hover:text-purple-500 hover:translate-x-1 transition-transform">SM (NCT, aespa)</a></li>
+                    <li><a href="https://www.ygfamily.com" target="_blank" class="flex items-center text-gray-700 hover:text-purple-500 hover:translate-x-1 transition-transform">YG (블랙핑크, 트레저)</a></li>
+                    <li><a href="https://www.jype.com" target="_blank" class="flex items-center text-gray-700 hover:text-purple-500 hover:translate-x-1 transition-transform">JYP (스트레이키즈, ITZY)</a></li>
+                </ul>
+            </div>
+            <!-- 주요 포털 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-blue-600">🚀 주요 포털</h2>
+                <ul class="space-y-3">
+                     <li><a href="https://www.naver.com" target="_blank" class="flex items-center text-gray-700 hover:text-blue-500 hover:translate-x-1 transition-transform"><img src="https://ssl.pstatic.net/static/favicon.ico" class="w-4 h-4 mr-3" alt="네이버 로고">네이버</a></li>
+                    <li><a href="https://www.google.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-blue-500 hover:translate-x-1 transition-transform"><img src="https://www.google.com/favicon.ico" class="w-4 h-4 mr-3" alt="구글 로고">구글</a></li>
+                    <li><a href="https://www.daum.net" target="_blank" class="flex items-center text-gray-700 hover:text-blue-500 hover:translate-x-1 transition-transform"><img src="https://www.daum.net/favicon.ico" class="w-4 h-4 mr-3" alt="다음 로고">다음</a></li>
+                    <li><a href="https://www.youtube.com" target="_blank" class="flex items-center text-gray-700 hover:text-blue-500 hover:translate-x-1 transition-transform"><img src="https://www.youtube.com/favicon.ico" class="w-4 h-4 mr-3" alt="유튜브 로고">유튜브</a></li>
+                </ul>
+            </div>
+             <!-- 뉴스/신문 -->
+             <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-green-600">📰 뉴스/신문</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://news.naver.com" target="_blank" class="flex items-center text-gray-700 hover:text-green-500 hover:translate-x-1 transition-transform">네이버 뉴스</a></li>
+                    <li><a href="https://news.daum.net" target="_blank" class="flex items-center text-gray-700 hover:text-green-500 hover:translate-x-1 transition-transform">다음 뉴스</a></li>
+                    <li><a href="https://www.chosun.com/" target="_blank" class="flex items-center text-gray-700 hover:text-green-500 hover:translate-x-1 transition-transform">조선일보</a></li>
+                    <li><a href="https://www.joongang.co.kr/" target="_blank" class="flex items-center text-gray-700 hover:text-green-500 hover:translate-x-1 transition-transform">중앙일보</a></li>
+                </ul>
+            </div>
+            <!-- 온라인쇼핑 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-amber-600">🛍️ 온라인쇼핑</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://www.coupang.com" target="_blank" class="flex items-center text-gray-700 hover:text-amber-500 hover:translate-x-1 transition-transform">쿠팡</a></li>
+                    <li><a href="https://www.gmarket.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-amber-500 hover:translate-x-1 transition-transform">G마켓</a></li>
+                    <li><a href="https://www.11st.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-amber-500 hover:translate-x-1 transition-transform">11번가</a></li>
+                    <li><a href="https://www.auction.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-amber-500 hover:translate-x-1 transition-transform">옥션</a></li>
+                    <li><a href="https://www.ssg.com" target="_blank" class="flex items-center text-gray-700 hover:text-amber-500 hover:translate-x-1 transition-transform">SSG.COM</a></li>
+                </ul>
+            </div>
+            <!-- 홈쇼핑 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-orange-600">📺 홈쇼핑</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://www.cjonstyle.com" target="_blank" class="flex items-center text-gray-700 hover:text-orange-500 hover:translate-x-1 transition-transform">CJ ONSTYLE</a></li>
+                    <li><a href="https://www.gsshop.com" target="_blank" class="flex items-center text-gray-700 hover:text-orange-500 hover:translate-x-1 transition-transform">GS SHOP</a></li>
+                    <li><a href="https://www.lotteimall.com" target="_blank" class="flex items-center text-gray-700 hover:text-orange-500 hover:translate-x-1 transition-transform">롯데홈쇼핑</a></li>
+                    <li><a href="https://www.hyundaihmall.com" target="_blank" class="flex items-center text-gray-700 hover:text-orange-500 hover:translate-x-1 transition-transform">현대Hmall</a></li>
+                </ul>
+            </div>
+            <!-- 도서/문화 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-indigo-600">📚 도서/문화</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://www.kyobobook.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-indigo-500 hover:translate-x-1 transition-transform">교보문고</a></li>
+                    <li><a href="https://www.yes24.com" target="_blank" class="flex items-center text-gray-700 hover:text-indigo-500 hover:translate-x-1 transition-transform">YES24</a></li>
+                    <li><a href="https://www.aladin.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-indigo-500 hover:translate-x-1 transition-transform">알라딘</a></li>
+                    <li><a href="https://ticket.interpark.com" target="_blank" class="flex items-center text-gray-700 hover:text-indigo-500 hover:translate-x-1 transition-transform">인터파크 티켓</a></li>
+                </ul>
+            </div>
+            <!-- 금융 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-teal-600">💰 금융</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://www.kbbank.com" target="_blank" class="flex items-center text-gray-700 hover:text-teal-500 hover:translate-x-1 transition-transform">KB국민은행</a></li>
+                    <li><a href="https://www.shinhan.com" target="_blank" class="flex items-center text-gray-700 hover:text-teal-500 hover:translate-x-1 transition-transform">신한은행</a></li>
+                    <li><a href="https://www.wooribank.com" target="_blank" class="flex items-center text-gray-700 hover:text-teal-500 hover:translate-x-1 transition-transform">우리은행</a></li>
+                    <li><a href="https://www.hanabank.com" target="_blank" class="flex items-center text-gray-700 hover:text-teal-500 hover:translate-x-1 transition-transform">하나은행</a></li>
+                </ul>
+            </div>
+            <!-- 생활/인테리어 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-stone-600">🛋️ 생활/인테리어</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://ohou.se" target="_blank" class="flex items-center text-gray-700 hover:text-stone-500 hover:translate-x-1 transition-transform">오늘의집</a></li>
+                    <li><a href="https://www.ikea.com/kr/ko/" target="_blank" class="flex items-center text-gray-700 hover:text-stone-500 hover:translate-x-1 transition-transform">IKEA</a></li>
+                    <li><a href="https://www.hanssem.com" target="_blank" class="flex items-center text-gray-700 hover:text-stone-500 hover:translate-x-1 transition-transform">한샘몰</a></li>
+                    <li><a href="https://www.livartmall.com" target="_blank" class="flex items-center text-gray-700 hover:text-stone-500 hover:translate-x-1 transition-transform">리바트몰</a></li>
+                </ul>
+            </div>
+            <!-- 여행/티켓 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-violet-600">✈️ 여행/티켓</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://www.yanolja.com" target="_blank" class="flex items-center text-gray-700 hover:text-violet-500 hover:translate-x-1 transition-transform">야놀자</a></li>
+                    <li><a href="https://www.goodchoice.kr" target="_blank" class="flex items-center text-gray-700 hover:text-violet-500 hover:translate-x-1 transition-transform">여기어때</a></li>
+                    <li><a href="https://www.agoda.com" target="_blank" class="flex items-center text-gray-700 hover:text-violet-500 hover:translate-x-1 transition-transform">아고다</a></li>
+                    <li><a href="https://www.trip.com" target="_blank" class="flex items-center text-gray-700 hover:text-violet-500 hover:translate-x-1 transition-transform">트립닷컴</a></li>
+                </ul>
+            </div>
+            <!-- 뷰티 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-pink-600">💄 뷰티</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://www.oliveyoung.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-pink-500 hover:translate-x-1 transition-transform">올리브영</a></li>
+                    <li><a href="https://www.chicor.com" target="_blank" class="flex items-center text-gray-700 hover:text-pink-500 hover:translate-x-1 transition-transform">시코르</a></li>
+                    <li><a href="https://www.aritaum.com" target="_blank" class="flex items-center text-gray-700 hover:text-pink-500 hover:translate-x-1 transition-transform">아리따움</a></li>
+                    <li><a href="https://www.sephora.kr/" target="_blank" class="flex items-center text-gray-700 hover:text-pink-500 hover:translate-x-1 transition-transform">세포라</a></li>
+                </ul>
+            </div>
+            <!-- 패션 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-cyan-600">👗 패션</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://www.musinsa.com/app/" target="_blank" class="flex items-center text-gray-700 hover:text-cyan-500 hover:translate-x-1 transition-transform">무신사</a></li>
+                    <li><a href="https://www.wconcept.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-cyan-500 hover:translate-x-1 transition-transform">W컨셉</a></li>
+                    <li><a href="https://www.29cm.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-cyan-500 hover:translate-x-1 transition-transform">29CM</a></li>
+                    <li><a href="https://kream.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-cyan-500 hover:translate-x-1 transition-transform">KREAM</a></li>
+                     <li><a href="https://www.ssfshop.com" target="_blank" class="flex items-center text-gray-700 hover:text-cyan-500 hover:translate-x-1 transition-transform">SSF샵</a></li>
+                </ul>
+            </div>
+            <!-- 가전/디지털 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-slate-600">💻 가전/디지털</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://www.samsung.com/sec/" target="_blank" class="flex items-center text-gray-700 hover:text-slate-500 hover:translate-x-1 transition-transform">삼성전자</a></li>
+                    <li><a href="https://www.lge.co.kr/" target="_blank" class="flex items-center text-gray-700 hover:text-slate-500 hover:translate-x-1 transition-transform">LG전자</a></li>
+                    <li><a href="https://www.e-himart.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-slate-500 hover:translate-x-1 transition-transform">하이마트</a></li>
+                    <li><a href="https://www.apple.com/kr/" target="_blank" class="flex items-center text-gray-700 hover:text-slate-500 hover:translate-x-1 transition-transform">Apple</a></li>
+                </ul>
+            </div>
+            <!-- 식품 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-emerald-600">🥦 식품</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://www.kurly.com/main" target="_blank" class="flex items-center text-gray-700 hover:text-emerald-500 hover:translate-x-1 transition-transform">마켓컬리</a></li>
+                    <li><a href="http://www.ssg.com/food/main.ssg" target="_blank" class="flex items-center text-gray-700 hover:text-emerald-500 hover:translate-x-1 transition-transform">SSG푸드</a></li>
+                    <li><a href="https://www.oasis.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-emerald-500 hover:translate-x-1 transition-transform">오아시스마켓</a></li>
+                    <li><a href="https://www.coupang.com/np/categories/497135" target="_blank" class="flex items-center text-gray-700 hover:text-emerald-500 hover:translate-x-1 transition-transform">로켓프레시</a></li>
+                </ul>
+            </div>
+             <!-- 건강 -->
+             <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-red-600">❤️ 건강</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://www.iherb.com" target="_blank" class="flex items-center text-gray-700 hover:text-red-500 hover:translate-x-1 transition-transform">iHerb</a></li>
+                    <li><a href="https://www.kgc.co.kr/" target="_blank" class="flex items-center text-gray-700 hover:text-red-500 hover:translate-x-1 transition-transform">정관장</a></li>
+                    <li><a href="https://www.gnckorea.co.kr/" target="_blank" class="flex items-center text-gray-700 hover:text-red-500 hover:translate-x-1 transition-transform">GNC</a></li>
+                    <li><a href="https://www.nutridday.com/" target="_blank" class="flex items-center text-gray-700 hover:text-red-500 hover:translate-x-1 transition-transform">뉴트리 디-데이</a></li>
+                </ul>
+            </div>
+            <!-- 유아/아동 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-sky-600">👶 유아/아동</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://www.boribori.co.kr" target="_blank" class="flex items-center text-gray-700 hover:text-sky-500 hover:translate-x-1 transition-transform">보리보리</a></li>
+                    <li><a href="https://www.0to7.com" target="_blank" class="flex items-center text-gray-700 hover:text-sky-500 hover:translate-x-1 transition-transform">제로투세븐</a></li>
+                    <li><a href="https://www.coupang.com/np/categories/316863" target="_blank" class="flex items-center text-gray-700 hover:text-sky-500 hover:translate-x-1 transition-transform">쿠팡 키즈</a></li>
+                    <li><a href="https://www.agabangmall.com/" target="_blank" class="flex items-center text-gray-700 hover:text-sky-500 hover:translate-x-1 transition-transform">아가방몰</a></li>
+                </ul>
+            </div>
+            <!-- 교육 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-fuchsia-600">🎓 교육</h2>
+                <ul class="space-y-3">
+                    <li><a href="https://www.megastudy.net" target="_blank" class="flex items-center text-gray-700 hover:text-fuchsia-500 hover:translate-x-1 transition-transform">메가스터디</a></li>
+                    <li><a href="https://www.ebs.co.kr/main" target="_blank" class="flex items-center text-gray-700 hover:text-fuchsia-500 hover:translate-x-1 transition-transform">EBS</a></li>
+                    <li><a href="https://class101.net/" target="_blank" class="flex items-center text-gray-700 hover:text-fuchsia-500 hover:translate-x-1 transition-transform">Class101</a></li>
+                    <li><a href="https://www.inflearn.com" target="_blank" class="flex items-center text-gray-700 hover:text-fuchsia-500 hover:translate-x-1 transition-transform">인프런</a></li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 시작페이지 설정 모달 스크립트
+        const setHomepageBtn = document.getElementById('set-homepage-btn');
+        const homepageModal = document.getElementById('homepage-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modalOverlay = document.getElementById('modal-overlay');
+        if(setHomepageBtn) setHomepageBtn.addEventListener('click', () => {
+            if(homepageModal) homepageModal.classList.remove('hidden');
+            if(modalOverlay) modalOverlay.classList.remove('hidden');
+        });
+        function closeModal() {
+            if(homepageModal) homepageModal.classList.add('hidden');
+            if(modalOverlay) modalOverlay.classList.add('hidden');
+        }
+        if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+        if(modalOverlay) modalOverlay.addEventListener('click', closeModal);
+
+        // 현재 시간 표시 스크립트
+        function updateTime() {
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                const now = new Date();
+                const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+                timeElement.textContent = now.toLocaleString('ko-KR', options);
+            }
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // 날씨 정보 로딩 스크립트
+        async function fetchWeather() {
+            const weatherWidget = document.getElementById('weather-widget');
+            if (!weatherWidget) return;
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true`;
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('날씨 정보를 가져올 수 없습니다.');
+                const data = await response.json();
+                const current = data.current_weather;
+                const temp = Math.round(current.temperature);
+                const weatherCode = current.weathercode;
+                let weatherInfo = { icon: '❓', desc: '정보 없음' };
+                if (weatherCode === 0) { weatherInfo = { icon: '☀️', desc: '맑음' }; } 
+                else if ([1, 2, 3].includes(weatherCode)) { weatherInfo = { icon: '☁️', desc: '흐림' }; }
+                else if ([45, 48].includes(weatherCode)) { weatherInfo = { icon: '🌫️', desc: '안개' }; }
+                else if (weatherCode >= 51 && weatherCode <= 82) { weatherInfo = { icon: '🌧️', desc: '비' }; }
+                else if (weatherCode >= 71 && weatherCode <= 86) { weatherInfo = { icon: '❄️', desc: '눈' }; }
+                else if (weatherCode >= 95) { weatherInfo = { icon: '⛈️', desc: '천둥번개' }; }
+                weatherWidget.innerHTML = `
+                    <span class="text-lg">${weatherInfo.icon}</span>
+                    <span class="font-semibold">서울</span>
+                    <span>${temp}°C</span>
+                    <span class="text-gray-400 text-sm hidden sm:inline">- ${weatherInfo.desc}</span>
+                `;
+            } catch (error) {
+                console.error("날씨 정보 로딩 오류:", error);
+                weatherWidget.innerHTML = `<span class="text-sm text-red-500">날씨 정보를 불러오지 못했습니다.</span>`;
+            }
+        }
+
+        // 검색 기능 스크립트
+        const searchForm = document.getElementById('search-form');
+        const searchInput = document.getElementById('search-input');
+        if (searchForm) {
+            searchForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const query = searchInput.value.trim();
+                if (query) {
+                    const searchURL = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                    window.open(searchURL, '_blank');
+                    searchInput.value = '';
+                }
+            });
+        }
+
+        // 추천 섹션 캐러셀 스크립트
+        const carouselContainer = document.getElementById('carousel-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        let currentIndex = 0;
+        
+        function setupCarousel() {
+            const carouselItemsData = [
+                { img: 'W컨셉', title: 'W컨셉', desc: '독창적인 디자이너 브랜드의 집합소', url: 'https://www.wconcept.co.kr' },
+                { img: '오늘의집', title: '오늘의집', desc: 'No.1 인테리어 필수 앱', url: 'https://ohou.se' },
+                { img: '마켓컬리', title: '마켓컬리', desc: '깐깐한 미식가들의 선택, 샛별배송', url: 'https://www.kurly.com/' },
+                { img: '무신사', title: '무신사', desc: '대한민국 대표 온라인 패션 스토어', url: 'https://www.musinsa.com' },
+                { img: '야놀자', title: '야놀자', desc: '여행의 모든 것, 한 번에 쉽게', url: 'https://www.yanolja.com' }
+            ];
+            
+            carouselContainer.innerHTML = carouselItemsData.map(item => `
+                <div class="carousel-item px-4">
+                    <div class="bg-white/20 p-6 rounded-xl backdrop-blur-sm text-center h-full flex flex-col justify-between">
+                        <div>
+                            <img src="https://placehold.co/100x40/ffffff/333333?text=${encodeURIComponent(item.img)}" alt="${item.title} 로고" class="mx-auto mb-3 h-10 rounded">
+                            <h3 class="text-xl font-semibold">${item.title}</h3>
+                            <p class="text-sm mt-1 mb-4 opacity-90">${item.desc}</p>
+                        </div>
+                        <a href="${item.url}" target="_blank" class="bg-white text-indigo-600 font-bold py-2 px-6 rounded-full inline-block hover:bg-gray-200 transition-colors mt-auto">바로가기</a>
+                    </div>
+                </div>
+            `).join('');
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const items = document.querySelectorAll('.carousel-item');
+            if (!items.length) return;
+            const totalItems = items.length;
+            const itemWidth = items[0].getBoundingClientRect().width;
+            carouselContainer.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+            prevBtn.style.display = currentIndex === 0 ? 'none' : 'block';
+            let visibleItems = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+            nextBtn.style.display = currentIndex >= totalItems - visibleItems ? 'none' : 'block';
+        }
+
+        if (nextBtn && prevBtn) {
+            nextBtn.addEventListener('click', () => {
+                const items = document.querySelectorAll('.carousel-item');
+                let visibleItems = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+                if (currentIndex < items.length - visibleItems) { currentIndex++; updateCarousel(); }
+            });
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) { currentIndex--; updateCarousel(); }
+            });
+        }
+        
+        window.addEventListener('resize', updateCarousel);
+        document.addEventListener('DOMContentLoaded', () => {
+            setupCarousel();
+            fetchWeather();
+        });
+    </script>
+
+    <footer class="mt-12 py-8 text-center border-t border-gray-200">
+        <div class="flex justify-center gap-6 mb-4">
+            <a href="terms_of_service_ko.html" class="text-sm text-gray-600 hover:text-gray-900 transition-colors" target="_blank">이용약관</a>
+            <span class="text-gray-300">|</span>
+            <a href="privacy_policy_ko.html" class="text-sm text-gray-600 hover:text-gray-900 font-bold transition-colors" target="_blank">개인정보 처리방침</a>
+        </div>
+        <div class="text-sm text-gray-500 space-y-1 mb-4">
+            <p>회사명: 인트렌드랩 | 사업자등록번호: 513-60-78444</p>
+            <p>이메일: airmanjun@naver.com</p>
+        </div>
+        <p class="text-xs text-gray-400 mb-4 px-4">
+            이 사이트에는 제휴 링크가 포함되어 있습니다. 링크를 통해 구매 시 파트너사로부터 일정액의 수수료를 제공받을 수 있습니다.
+        </p>
+        <p class="text-sm text-gray-500">
+            &copy; 2025 K-Link. All Rights Reserved.
+        </p>
+    </footer>
+
+</body>
+</html>
+
